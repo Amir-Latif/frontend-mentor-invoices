@@ -1,36 +1,43 @@
-.am-flex {
-  display: flex;
+.sec-color {
+  color: #888eb0;
 }
 
-#layout {
-  justify-content: space-between;
-  align-items: center;
+.night-mode {
+  background-color: #141625;
+  color: #fff;
+}
+.night-mode .button, .night-mode h6 {
+  color: #fff;
+}
+.night-mode .sec-color {
+  color: #dfe3fa;
+}
+
+#layout #side-pane {
   background-color: #373b53;
   position: relative;
   top: 0;
 }
 @media screen and (min-width: 992px) {
-  #layout {
+  #layout #side-pane {
     position: sticky;
     left: 0;
-    flex-direction: column;
     height: 100vh;
     width: max-content;
     border-radius: 0 1rem 1rem 0;
   }
 }
-#layout #logo {
+#layout #side-pane #logo {
   border-radius: 0 1rem 1rem 0;
   background-color: #7c5dfa;
   padding: 1rem;
   position: relative;
 }
-#layout #logo img {
-  padding: 0.5rem;
+#layout #side-pane #logo img {
   z-index: 1;
   position: relative;
 }
-#layout #logo::after {
+#layout #side-pane #logo::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -40,31 +47,29 @@
   height: 50%;
   border-radius: 1rem 0 1rem 0;
 }
-#layout div {
-  justify-content: space-between;
-  align-items: center;
-}
-@media screen and (min-width: 992px) {
-  #layout div {
-    flex-direction: column;
-  }
-}
-#layout div button#theme-icon {
-  padding: 1.5rem;
+#layout #side-pane button#theme-icon {
+  margin-left: auto;
+  padding: 0.5rem;
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
-#layout div #amir-pic {
+@media screen and (min-width: 992px) {
+  #layout #side-pane button#theme-icon {
+    margin-top: auto;
+    margin-left: initial;
+  }
+}
+#layout #side-pane #amir-pic {
   border-left: solid #808080 1px;
 }
 @media screen and (min-width: 992px) {
-  #layout div #amir-pic {
+  #layout #side-pane #amir-pic {
     border-left: none;
     border-top: solid #808080 1px;
   }
 }
-#layout div #amir-pic img {
+#layout #side-pane #amir-pic img {
   border-radius: 50%;
   padding: 1rem;
 }

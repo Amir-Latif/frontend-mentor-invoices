@@ -1,23 +1,54 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+export interface invoicesData {
+  "id": string,
+  "createdAt": string,
+  "paymentDue": string,
+  "description": string,
+  "paymentTerms": number,
+  "clientName": string,
+  "clientEmail": string,
+  "status": string,
+  "senderAddress": {
+    "street": string,
+    "city": string,
+    "postCode": string,
+    "country": string
+  },
+  "clientAddress": {
+    "street": string,
+    "city": string,
+    "postCode": string,
+    "country": string
+  },
+  "items": 
+    {
+      "name": string,
+      "quantity": number,
+      "price": number
+      "total": number
+    }[],
+  "total": number
+}
+
 // Store Interface & Initialization
 export interface InvoiceStore {
   themeDay: string;
-  invoices: Array<Object>
+  invoices: Array<invoicesData>
 }
 
 const initialState: InvoiceStore = {
   themeDay: localStorage.getItem('theme')!,
   invoices: [
     {
-      "id": "RT3080",
+      id: "RT3080",
       "createdAt": "2021-08-18",
       "paymentDue": "2021-08-19",
       "description": "Re-branding",
       "paymentTerms": 1,
       "clientName": "Jensen Huang",
       "clientEmail": "jensenh@mail.com",
-      "status": "paid",
+      "status": "Paid",
       "senderAddress": {
         "street": "19 Union Terrace",
         "city": "London",
@@ -48,7 +79,7 @@ const initialState: InvoiceStore = {
       "paymentTerms": 30,
       "clientName": "Alex Grim",
       "clientEmail": "alexgrim@mail.com",
-      "status": "pending",
+      "status": "Pending",
       "senderAddress": {
         "street": "19 Union Terrace",
         "city": "London",
@@ -85,7 +116,7 @@ const initialState: InvoiceStore = {
       "paymentTerms": 7,
       "clientName": "John Morrison",
       "clientEmail": "jm@myco.com",
-      "status": "paid",
+      "status": "Paid",
       "senderAddress": {
         "street": "19 Union Terrace",
         "city": "London",
@@ -116,7 +147,7 @@ const initialState: InvoiceStore = {
       "paymentTerms": 1,
       "clientName": "Alyssa Werner",
       "clientEmail": "alyssa@email.co.uk",
-      "status": "pending",
+      "status": "Pending",
       "senderAddress": {
         "street": "19 Union Terrace",
         "city": "London",
@@ -147,7 +178,7 @@ const initialState: InvoiceStore = {
       "paymentTerms": 7,
       "clientName": "Mellisa Clarke",
       "clientEmail": "mellisa.clarke@example.com",
-      "status": "pending",
+      "status": "Pending",
       "senderAddress": {
         "street": "19 Union Terrace",
         "city": "London",
@@ -184,7 +215,7 @@ const initialState: InvoiceStore = {
       "paymentTerms": 30,
       "clientName": "Thomas Wayne",
       "clientEmail": "thomas@dc.com",
-      "status": "pending",
+      "status": "Pending",
       "senderAddress": {
         "street": "19 Union Terrace",
         "city": "London",
