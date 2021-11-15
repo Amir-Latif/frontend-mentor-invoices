@@ -246,7 +246,7 @@ const initialState: InvoiceStore = {
       "paymentTerms": 7,
       "clientName": "Anita Wainwright",
       "clientEmail": "",
-      "status": "draft",
+      "status": "Draft",
       "senderAddress": {
         "street": "19 Union Terrace",
         "city": "London",
