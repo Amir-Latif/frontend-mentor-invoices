@@ -11,13 +11,20 @@
     }
 }
 .pending {
-    background-color: rgb(255 248 240);
+    background-color: rgb(255, 248, 240);
     color: rgb(255 143 0);
     padding: 0.5rem 1rem;
-    
     .bullet 
     {
-        background-color: rgb(255 143 0);
+        background-color: rgb(255, 143, 0);
+    }
+}
+.draft {
+    padding: 0.5rem 2rem;
+    background-color: rgb(243, 243, 245);
+    .bullet 
+    {
+        background-color: rgb(55, 59, 83);
     }
 }
 
@@ -27,4 +34,11 @@
 
 .pending.night-status {
     background-color: rgb(43, 39, 54);
+}
+
+.draft.night-status {
+    background-color: rgb(41, 44, 69);
+    .bullet {
+        background-color: rgb(223, 227, 250);
+    }
 }

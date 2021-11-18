@@ -44,6 +44,9 @@
 
     #control-btns {
         width: max-content;
+        button {
+            color: #fff;
+        }
         #edit {
             background-color: rgb(87,236,147);
         }

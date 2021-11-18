@@ -20,12 +20,27 @@
   background-color: #ff8f00;
 }
 
+.draft {
+  padding: 0.5rem 2rem;
+  background-color: #f3f3f5;
+}
+.draft .bullet {
+  background-color: #373b53;
+}
+
 .paid.night-status {
   background-color: #1f2c3f;
 }
 
 .pending.night-status {
   background-color: #2b2736;
+}
+
+.draft.night-status {
+  background-color: #292c45;
+}
+.draft.night-status .bullet {
+  background-color: #dfe3fa;
 }
 
 /*# sourceMappingURL=status.css.map */
