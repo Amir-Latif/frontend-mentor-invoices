@@ -1,0 +1,31 @@
+@mixin horizontal-div {
+    .horizontal-div {
+        cursor: pointer;
+        border-radius: 0.5rem;
+        background-color: #fff;
+        padding: 1.5em;
+
+        &:hover {
+            border: solid rgb(124, 93, 250) 1px;
+        }
+
+        h5 {
+            @media screen and (min-width: 992px) {
+                margin-left: auto;
+            }
+        }
+
+        .bullet {
+            height: 0.5rem;
+            width: 0.5rem;
+            margin-right: 0.5rem;
+        }
+    }
+    .horizontal-div-night {
+        background-color: rgb(30, 33, 57);
+
+        button {
+            color: #fff;
+        }
+    }
+}

@@ -1,0 +1,31 @@
+.status {
+  border-radius: 0.5rem;
+}
+
+.paid {
+  background-color: #f3fdf9;
+  color: #33d6ab;
+  padding: 0.5rem 2rem;
+}
+.paid .bullet {
+  background-color: #33d69f;
+}
+
+.pending {
+  background-color: #fff8f0;
+  color: #ff8f00;
+  padding: 0.5rem 1rem;
+}
+.pending .bullet {
+  background-color: #ff8f00;
+}
+
+.paid.night-status {
+  background-color: #1f2c3f;
+}
+
+.pending.night-status {
+  background-color: #2b2736;
+}
+
+/*# sourceMappingURL=status.css.map */

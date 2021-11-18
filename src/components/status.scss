@@ -1,0 +1,30 @@
+.status {
+    border-radius: 0.5rem;
+}
+
+.paid {
+    background-color: rgb(243, 253, 249);
+    color: rgb(51, 214, 171);
+    padding: 0.5rem 2rem;
+    .bullet {
+        background-color: rgb(51, 214, 159);
+    }
+}
+.pending {
+    background-color: rgb(255 248 240);
+    color: rgb(255 143 0);
+    padding: 0.5rem 1rem;
+    
+    .bullet 
+    {
+        background-color: rgb(255 143 0);
+    }
+}
+
+.paid.night-status {
+    background-color: rgb(31, 44, 63);
+}
+
+.pending.night-status {
+    background-color: rgb(43, 39, 54);
+}

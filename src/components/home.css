@@ -1,9 +1,9 @@
 #home {
-  padding: 4rem auto;
+  padding: 1.5rem;
 }
 @media screen and (min-width: 992px) {
   #home {
-    padding: 4rem 15%;
+    padding: 4rem 19%;
   }
 }
 #home .btn:focus {
@@ -50,71 +50,55 @@
   margin-right: 0.4rem;
   background-color: #fff;
 }
-#home .invoice {
+#home .horizontal-div {
+  cursor: pointer;
   border-radius: 0.5rem;
   background-color: #fff;
-  padding: 2rem;
+  padding: 1.5em;
+}
+#home .horizontal-div:hover {
+  border: solid #7c5dfa 1px;
+}
+@media screen and (min-width: 992px) {
+  #home .horizontal-div h5 {
+    margin-left: auto;
+  }
+}
+#home .horizontal-div .bullet {
+  height: 0.5rem;
+  width: 0.5rem;
+  margin-right: 0.5rem;
+}
+#home .horizontal-div-night {
+  background-color: #1e2139;
+}
+#home .horizontal-div-night button {
+  color: #fff;
+}
+#home .horizontal-div {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1.5fr 0.5fr 0.5fr;
   column-gap: 2rem;
 }
 @media screen and (min-width: 992px) {
-  #home .invoice {
+  #home .horizontal-div {
     grid-template-columns: 4rem 1fr 1fr 1fr 6rem 0.5rem;
     grid-template-rows: 1fr;
   }
 }
-#home .invoice:hover {
-  border: solid #7c5dfa 1px;
-}
-#home .invoice .status {
-  border-radius: 0.5rem;
+#home .status {
   margin-left: auto;
   grid-row: 2/span 2;
   grid-column: 2;
+  order: 4;
 }
 @media screen and (min-width: 992px) {
-  #home .invoice .status {
-    margin-left: auto;
+  #home .status {
     grid-row: initial;
     grid-column: initial;
+    order: 5;
   }
-}
-#home .invoice .paid {
-  background-color: #f3fdf9;
-  color: #33d6ab;
-  padding: 0.5rem 2rem;
-}
-#home .invoice .paid .bullet {
-  background-color: #33d69f;
-}
-#home .invoice .pending {
-  background-color: #fff8f0;
-  color: #ff8f00;
-  padding: 0.5rem 1rem;
-}
-#home .invoice .pending .bullet {
-  background-color: #ff8f00;
-}
-@media screen and (min-width: 992px) {
-  #home .invoice h5 {
-    margin-left: auto;
-  }
-}
-#home .invoice .bullet {
-  height: 0.5rem;
-  width: 0.5rem;
-  margin-right: 0.5rem;
-}
-#home .invoice-night {
-  background-color: #1e2139;
-}
-#home .paid.night-status {
-  background-color: #1f2c3f;
-}
-#home .pending.night-status {
-  background-color: #2b2736;
 }
 
 /*# sourceMappingURL=home.css.map */

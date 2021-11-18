@@ -1,0 +1,74 @@
+#invoice-view {
+  padding: 1.5rem;
+}
+@media screen and (min-width: 992px) {
+  #invoice-view {
+    padding: 4rem 19%;
+  }
+}
+#invoice-view #go-back-btn {
+  cursor: pointer;
+}
+#invoice-view .horizontal-div {
+  cursor: pointer;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  padding: 1.5em;
+}
+#invoice-view .horizontal-div:hover {
+  border: solid #7c5dfa 1px;
+}
+@media screen and (min-width: 992px) {
+  #invoice-view .horizontal-div h5 {
+    margin-left: auto;
+  }
+}
+#invoice-view .horizontal-div .bullet {
+  height: 0.5rem;
+  width: 0.5rem;
+  margin-right: 0.5rem;
+}
+#invoice-view .horizontal-div-night {
+  background-color: #1e2139;
+}
+#invoice-view .horizontal-div-night button {
+  color: #fff;
+}
+#invoice-view .horizontal-div:hover {
+  border: none;
+}
+#invoice-view #sender-address {
+  max-width: max-content;
+}
+#invoice-view table {
+  border-collapse: separate;
+}
+#invoice-view .table-night {
+  color: #fff;
+  background-color: #252945;
+}
+#invoice-view .price {
+  color: #fff;
+  background-color: #373b53;
+}
+#invoice-view .price-night {
+  background-color: #0c0e16;
+}
+#invoice-view .desktop-btns {
+  width: max-content;
+  background-color: #fff;
+}
+#invoice-view #control-btns {
+  width: max-content;
+}
+#invoice-view #control-btns #edit {
+  background-color: #57ec93;
+}
+#invoice-view #control-btns #delete {
+  background-color: #ec5757;
+}
+#invoice-view #control-btns #mark-paid {
+  background-color: #7c5dfa;
+}
+
+/*# sourceMappingURL=invoiceview.css.map */

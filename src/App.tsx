@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./components/Home";
+import InvoiceView from "./components/InvoiceView";
 import { invoicesData } from "./store/invoiceSlice";
 import { RootState } from "./store/store";
 import { useAppSelector } from "./store/hooks"
@@ -21,6 +22,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />} >
           <Route path="/" element={<Home />} />
+          <Route path="/invoice/:id" element={<InvoiceView />} />
         </Route>
       </Routes>
     </BrowserRouter >

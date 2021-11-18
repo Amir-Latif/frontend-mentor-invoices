@@ -1,29 +1,28 @@
-.sec-color {
+.sec-color, small, thead {
     color: rgb(136, 142, 176);
-  }
+}
   
-  .night-mode {
+.night-mode {
     background-color: rgb(20, 22, 37);
     color: #fff;
-    
+
     .button, h6 {
-      color: #fff;
+        color: #fff;
     }
-  
-    .sec-color {
+
+    .sec-color, small {
         color: rgb(223, 227, 250);
     }
 }
 
-#layout {
+#layout {    
     #side-pane {
         
         background-color: rgb(55, 59, 83);
-        position: relative;
+        position: sticky;
         top: 0;
     
         @media screen and (min-width: 992px) {
-            position: sticky;
             left: 0;
             height: 100vh;
             width: max-content;

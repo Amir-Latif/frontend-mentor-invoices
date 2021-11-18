@@ -1,0 +1,59 @@
+@import 'mixins.scss';
+
+#invoice-view {
+    padding: 1.5rem;
+
+    @media screen and (min-width: 992px){
+        padding: 4rem 19%;
+    }
+
+    #go-back-btn {
+        cursor: pointer;
+    }
+    
+    @include horizontal-div;
+    .horizontal-div:hover {
+        border: none;
+    }
+    
+    #sender-address {
+        max-width: max-content;
+    }
+
+    table {
+        border-collapse: separate;
+    }
+
+    .table-night {
+        color: #fff;
+        background-color: rgb(37 41 69);
+    }
+
+    .price {
+        color: #fff;
+        background-color: rgb(55, 59, 83);
+    }
+    .price-night {
+        background-color: rgb(12, 14, 22);
+    }
+
+    .desktop-btns {
+        width: max-content;
+        background-color: #fff;
+    }
+
+    #control-btns {
+        width: max-content;
+        #edit {
+            background-color: rgb(87,236,147);
+        }
+
+        #delete {
+            background-color: rgb(236, 87, 87);
+        }
+
+        #mark-paid {
+            background-color: rgb(124, 93, 250);
+        }
+    }
+}

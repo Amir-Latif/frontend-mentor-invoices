@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react"
 import { Button, ButtonGroup, Dropdown, Stack, ToggleButton } from "react-bootstrap"
+import { useNavigate } from "react-router"
+import { DropdownArrow, IconArrowRight, IconPlus } from ".."
 import { useAppSelector } from "../store/hooks"
 import { invoicesData } from "../store/invoiceSlice"
 import { RootState } from "../store/store"
+import Status from "./Status"
 import "./home.css"
 
 export default function Home() {
+    // Variables & Hooks
     const [desktopView, setDesktopView] = useState(window.matchMedia('(min-width: 992px)').matches)
     const theme: string = useAppSelector((store: RootState) => store.themeDay)
 
@@ -15,11 +19,15 @@ export default function Home() {
         { name: 'Pending', value: 'Pending' },
         { name: 'Draft', value: 'Draft' },
     ]
-    const [selectedFilter, selectFilter] = useState('all')
+    const [selectedFilter, selectFilter] = useState('All')
     const allInvoices: invoicesData[] = useAppSelector((store: RootState) => store.invoices)
     let invoices: invoicesData[] = allInvoices;
     if (selectedFilter !== 'All') invoices = allInvoices.filter(element => element.status === selectedFilter)
 
+    const navigateTo = useNavigate()
+
+
+    // Effects & actions
     useEffect(() => {
         window.addEventListener('resize', () =>
             setDesktopView(window.matchMedia('(min-width: 992px)').matches ? true : false))
@@ -30,11 +38,13 @@ export default function Home() {
         }
     }, [desktopView])
 
+
+    // Return
     return (
         <React.Fragment>
             <div id="home" className="container-fluid">
                 {/* The header */}
-                <Stack direction="horizontal" gap={3} className="mb-4">
+                <Stack direction="horizontal" gap={3} className="my-4">
                     <div>
                         <h2>Invoices</h2>
 
@@ -49,7 +59,7 @@ export default function Home() {
                     {/* The filter button */}
                     <Dropdown>
                         <Dropdown.Toggle variant="" className={`fw-bold ${theme === "night" ? "text-white" : ""} `}>
-                            {desktopView ? "Filter by status" : "Filter"} <img src="images/icon-arrow.svg" alt="arrow icon" />
+                            {desktopView ? "Filter by status" : "Filter"} <img src={DropdownArrow} alt="arrow icon" />
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu className={theme === 'night' ? 'dropdown-night' : ''}>
@@ -79,7 +89,7 @@ export default function Home() {
 
 
                     <Button variant="" id="btn-plus" className="fw-bold">
-                        <img src="images/icon-plus.svg" alt="add icon" className="rounded-circle" /> New {desktopView ? "Invoice" : ""}
+                        <img src={IconPlus} alt="add icon" className="rounded-circle" /> New {desktopView ? "Invoice" : ""}
                     </Button>
                 </Stack>
 
@@ -89,7 +99,8 @@ export default function Home() {
                         (<div>No invoices for the selected filter</div>)
                         :
                         invoices.map((invoice, index) => (
-                            <div key={index} className={`${theme === 'night' ? "invoice-night" : ""} invoice align-items-center mb-3`}>
+                            <div key={index} className={`${theme === 'night' ? "horizontal-div-night" : ""} horizontal-div align-items-center mb-3`}
+                                onClick={() => navigateTo(`./invoice/${invoice.id}`)}>
 
                                 <h6 style={{ order: 1 }} className="mb-0"><span className="sec-color">#</span>{invoice.id}</h6>
                                 <div className="sec-color" style={{ order: desktopView ? 2 : 3 }}>
@@ -99,13 +110,10 @@ export default function Home() {
                                 <div className={`${!desktopView ? "ms-auto" : ""} sec-color`} style={{ order: desktopView ? 3 : 2 }}>{invoice.clientName}</div>
 
                                 <h5 style={{ order: desktopView ? 4 : 5 }} className="mb-0">£{invoice.total.toLocaleString('es-US', { minimumFractionDigits: 2 })}</h5>
-                                <div className={`${invoice.status === 'Paid' ? "paid" : "pending"} ${theme === 'night' ? 'night-status' : ''} status d-flex align-items-center fw-bold`}
-                                    style={{ order: desktopView ? 5 : 4 }}>
-                                    <div className="bullet rounded-circle"></div>
-                                    <div>{invoice.status}</div>
-                                </div>
 
-                                {desktopView && <div style={{ order: 6 }}><img src="images/icon-arrow-right.svg" alt="Right Arrow" /></div>}
+                                <Status status={invoice.status} theme={theme} />
+
+                                {desktopView && <div style={{ order: 6 }}><img src={IconArrowRight} alt="Right Arrow" /></div>}
 
                             </div>
                         ))}
