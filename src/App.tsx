@@ -4,18 +4,20 @@ import Home from "./components/Home";
 import InvoiceView from "./components/InvoiceView";
 import { invoicesData } from "./store/invoiceSlice";
 import { RootState } from "./store/store";
-import { useAppSelector } from "./store/hooks"
+import { useAppDispatch, useAppSelector } from "./store/hooks"
 import { useEffect } from "react";
 
 export default function App() {
   const invoices: invoicesData[] = useAppSelector((store: RootState) => store.invoices)
-  // Set default theme mode if not set already
+  const dispatch = useAppDispatch()
+  
   useEffect(() => {
+    // Set default theme mode  & store if not set already
     !localStorage.getItem('theme') && localStorage.setItem('theme', 'day')
     !localStorage.getItem('invoices') && localStorage.setItem('invoices', JSON.stringify(invoices))
 
+    
   }, [invoices])
-  
 
   return (
     <BrowserRouter>

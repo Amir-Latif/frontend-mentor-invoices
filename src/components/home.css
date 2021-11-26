@@ -39,13 +39,13 @@
 #home .show.dropdown img {
   transform: rotate(180deg);
 }
-#home #btn-plus {
+#home .purple-btn {
   padding: 0.4rem 0.8rem 0.4rem 0.3rem;
   color: #fff;
   background-color: #7c5dfa;
   border-radius: 2rem;
 }
-#home #btn-plus img {
+#home .purple-btn img {
   padding: 0.7rem;
   margin-right: 0.4rem;
   background-color: #fff;
@@ -99,6 +99,41 @@
     grid-column: initial;
     order: 5;
   }
+}
+
+#creation-modal form {
+  overflow-y: auto;
+}
+#creation-modal form h6 {
+  color: #7c5dfa;
+}
+#creation-modal form .item, #creation-modal form .qty, #creation-modal form .price, #creation-modal form .total {
+  flex-grow: 2;
+}
+#creation-modal .creation-div {
+  background-color: #f9fafe;
+}
+#creation-modal .creation-div:hover {
+  background-color: #9277ff;
+}
+#creation-modal .creation-div-night {
+  background-color: #1e2139;
+  border: none;
+  color: #fff;
+}
+#creation-modal .creation-div-night::placeholder {
+  color: #fff;
+}
+#creation-modal .purple-btn {
+  padding: 0.4rem 0.8rem 0.4rem 0.3rem;
+  color: #fff;
+  background-color: #7c5dfa;
+  border-radius: 2rem;
+}
+#creation-modal .purple-btn img {
+  padding: 0.7rem;
+  margin-right: 0.4rem;
+  background-color: #fff;
 }
 
 /*# sourceMappingURL=home.css.map */

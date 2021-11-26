@@ -14,6 +14,7 @@
 }
 
 #layout #side-pane {
+  z-index: 1;
   background-color: #373b53;
   position: sticky;
   top: 0;

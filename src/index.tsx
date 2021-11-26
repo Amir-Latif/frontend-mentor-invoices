@@ -16,7 +16,8 @@ import IconCrescent from './components/assets/icon-crescent.svg';
 import IconPlus from './components/assets/icon-plus.svg';
 import IconSun from './components/assets/icon-sun.svg';
 import Logo from './components/assets/logo.svg';
-export { AmirLatifIcon, IconArrowRight, IconArrowLeft, IconCrescent, DropdownArrow, IconPlus, IconSun, Logo };
+import Trash from './components/assets/trash.svg';
+export { AmirLatifIcon, IconArrowRight, IconArrowLeft, IconCrescent, DropdownArrow, IconPlus, IconSun, Logo, Trash };
 
 
 ReactDOM.render(

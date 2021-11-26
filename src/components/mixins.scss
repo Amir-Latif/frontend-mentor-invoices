@@ -29,3 +29,18 @@
         }
     }
 }
+
+@mixin purple-btn {
+    .purple-btn {
+        padding: 0.4rem 0.8rem 0.4rem 0.3rem;
+        color: #fff;
+        background-color: rgb(124, 93, 250);
+        border-radius: 2rem;
+        
+        img {
+            padding: 0.7rem;
+            margin-right: 0.4rem;
+            background-color: #fff;
+        }
+    }
+}
