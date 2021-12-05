@@ -43,15 +43,15 @@
 #invoice-view table {
   border-collapse: separate;
 }
+#invoice-view table .price {
+  color: #fff;
+  background-color: #373b53;
+}
 #invoice-view .table-night {
   color: #fff;
   background-color: #252945;
 }
-#invoice-view .price {
-  color: #fff;
-  background-color: #373b53;
-}
-#invoice-view .price-night {
+#invoice-view .table-night .price-night {
   background-color: #0c0e16;
 }
 #invoice-view .desktop-btns {

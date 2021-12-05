@@ -1,30 +1,46 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Col, Container, Row, Stack, Table } from 'react-bootstrap'
-import { useNavigate, useParams } from 'react-router'
+import { NavigateFunction, useNavigate, useParams } from 'react-router'
 import { IconArrowLeft } from '..'
-import { useAppSelector } from '../store/hooks'
-import { RootState } from '../store/store'
+import { useAppDispatch, useAppSelector } from '../store/hooks'
+import { AppDispatch, RootState } from '../store/store'
+import { deleteInvoice, editInvoice, invoiceData } from '../store/invoiceSlice'
+import InvoiceForm from "./InvoiceForm"
 import Status from './Status'
 import './invoiceview.css'
 
 // Edit/Delete Component
-function EditDelete({ status }: { status: string }) {
+function EditDelete({ status, invoice, dispatch, navigateTo, showInvoiceForm }:
+    { status: string, invoice: invoiceData, dispatch: AppDispatch, navigateTo: NavigateFunction, showInvoiceForm: React.Dispatch<React.SetStateAction<boolean>> }) {
     return (
         <Stack direction="horizontal" id="control-btns" className={`ms-auto`}>
-            <Button variant="" id="edit" className="rounded-pill px-3 me-2">Edit</Button>
-            <Button variant="" id="delete" className="rounded-pill px-3 me-2">Delete</Button>
-            {status !== "Paid" && (<Button variant="" id="mark-paid" className="rounded-pill px-3">Mark as Paid</Button>)}
+            <Button variant="" id="edit" className="rounded-pill px-3 me-2" onClick={() => showInvoiceForm(true)}>Edit</Button>
+            <Button variant="" id="delete" className="rounded-pill px-3 me-2"
+                onClick={() => {
+                    dispatch(deleteInvoice(invoice.id))
+                    navigateTo('/')
+                }}>Delete</Button>
+            {status !== "Paid" && (
+                <Button variant="" id="mark-paid" className="rounded-pill px-3"
+                    onClick={() => dispatch(editInvoice({ ...invoice, status: "Paid" }))}>Mark as Paid</Button>
+            )}
         </Stack>
     )
 }
 
-// Main Component
+/*================
+Main Component
+==================*/
 export default function InvoiceView() {
     const { id } = useParams()
     const theme = useAppSelector((store: RootState) => store.themeDay)
     const invoice = useAppSelector((store: RootState) => store.invoices.filter(invoice => invoice.id === id))[0]
+    const dispatch = useAppDispatch()
     const [desktopView, setDesktopView] = useState(window.matchMedia('(min-width: 992px)').matches)
     const navigateTo = useNavigate()
+
+    // Invoice Form
+    const [invoiceForm, showInvoiceForm] = useState(false)
 
     useEffect(() => {
         window.addEventListener('resize', () =>
@@ -51,7 +67,7 @@ export default function InvoiceView() {
                     <Status status={invoice.status} theme={theme} className={desktopView ? 'ms-3' : ''} />
 
                     {desktopView && (
-                        <EditDelete status={invoice.status} />
+                        <EditDelete status={invoice.status} invoice={invoice} dispatch={dispatch} navigateTo={navigateTo} showInvoiceForm={showInvoiceForm} />
                     )}
                 </Stack>
 
@@ -127,7 +143,7 @@ export default function InvoiceView() {
                         </Table>
 
                         <Stack direction="horizontal" gap={2}
-                            className={`justify-content-between p-4 ${theme === 'night' ? 'price-night' : 'price'} `}>
+                            className="justify-content-between p-4 price">
                             <div>Amount Due</div>
                             <h6>£{invoice.total}</h6>
                         </Stack>
@@ -137,9 +153,13 @@ export default function InvoiceView() {
 
                 {!desktopView && (
                     <div className={`${theme === 'night' ? 'horizontal-div-night' : 'desktop-btns'} rounded p-4`}>
-                        <EditDelete status={invoice.status} />
+                        <EditDelete status={invoice.status} invoice={invoice} dispatch={dispatch} navigateTo={navigateTo} showInvoiceForm={showInvoiceForm} />
                     </div>
                 )}
+
+                {/* Invoice Form */}
+                {invoiceForm && <InvoiceForm type="editing" theme={theme} desktopView={desktopView} showInvoiceForm={showInvoiceForm} invoice={invoice} />}
+
             </main>
         </React.Fragment>
     )

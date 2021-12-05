@@ -22,19 +22,19 @@
 
     table {
         border-collapse: separate;
-    }
-
-    .table-night {
-        color: #fff;
-        background-color: rgb(37 41 69);
-    }
-
-    .price {
-        color: #fff;
-        background-color: rgb(55, 59, 83);
-    }
-    .price-night {
-        background-color: rgb(12, 14, 22);
+        
+            .price {
+                color: #fff;
+                background-color: rgb(55, 59, 83);
+            }
+        }
+        
+        .table-night {
+            color: #fff;
+            background-color: rgb(37 41 69);
+            .price-night {
+                background-color: rgb(12, 14, 22);
+            }
     }
 
     .desktop-btns {

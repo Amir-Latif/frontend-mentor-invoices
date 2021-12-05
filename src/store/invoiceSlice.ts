@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export interface invoicesData {
+export interface invoiceData {
   id: string,
   createdAt: string,
   paymentDue: string,
@@ -21,7 +21,7 @@ export interface invoicesData {
     "postCode": string,
     "country": string
   },
-  "items":
+  items:
   {
     "name": string,
     "quantity": number,
@@ -34,12 +34,12 @@ export interface invoicesData {
 // Store Interface & Initialization
 export interface InvoiceStore {
   themeDay: string;
-  invoices: Array<invoicesData>
+  invoices: Array<invoiceData>
 }
 
 const initialState: InvoiceStore = {
-  themeDay: localStorage.getItem('theme')!,
-  invoices: [
+  themeDay: localStorage.getItem('theme')? localStorage.getItem('theme')! : 'day',
+  invoices: localStorage.getItem('invoices') ? JSON.parse(localStorage.getItem('invoices')!) : [
     {
       id: "RT3080",
       "createdAt": "2021-08-18",
@@ -280,43 +280,33 @@ export const invoiceSlice = createSlice({
     toggleTheme: store => {
       if (localStorage.getItem('theme') === 'day') {
         localStorage.setItem('theme', 'night')
-        return {
-          ...store,
-          themeDay: "night"
-        }
+        store.themeDay = 'night'
       } else {
         localStorage.setItem('theme', 'day')
-        return {
-          ...store,
-          themeDay: "day"
+        store.themeDay = "day"
+      }
+    },
+    addInvoice: (store, item: PayloadAction<invoiceData>) => {
+      localStorage.setItem('invoices', JSON.stringify([...store.invoices, item.payload]))
+      store.invoices.push(item.payload)
+    },
+    editInvoice: (store, item: PayloadAction<invoiceData>) => {
+      store.invoices = store.invoices.map(invoice => invoice.id === item.payload.id ? item.payload : invoice)
+      localStorage.setItem('invoices', JSON.stringify(store.invoices))
+    },
+    deleteInvoice: (store, id: PayloadAction<string>) => {
+      for (let i = 0; i < store.invoices.length; i++) {
+        if (store.invoices[i].id === id.payload) {
+          store.invoices.splice(i, 1)
+          break
         }
       }
     },
-    addInvoice: (store, item: PayloadAction<invoicesData>) => {
-      localStorage.setItem('invoices', JSON.stringify([...store.invoices, item.payload]))
-      return {
-        ...store,
-        invoices: [...store.invoices, item.payload]
-      }
-    },
-    editInvoice: (store, item: PayloadAction<invoicesData>) => {
-      localStorage.setItem('invoices', JSON.stringify([...store.invoices, item.payload]))
-      let updatedInvoices = store.invoices.map(invoice => invoice.id === item.payload.id ? item.payload : invoice)
-
-      return {
-        ...store,
-        invoices: [...updatedInvoices]
-      }
-    },
-    getInvoicesFromLocal: store => {
-      return {
-        ...store,
-        invoices: JSON.parse(localStorage.getItem('invoices')!)
-      }
-    }
+    getInvoicesFromLocal: store =>
+      store.invoices = JSON.parse(localStorage.getItem('invoices')!)
   }
 });
 
-export const { toggleTheme, addInvoice, editInvoice, getInvoicesFromLocal } = invoiceSlice.actions;
+export const { toggleTheme, addInvoice, editInvoice, deleteInvoice, getInvoicesFromLocal } = invoiceSlice.actions;
 
 export default invoiceSlice.reducer;

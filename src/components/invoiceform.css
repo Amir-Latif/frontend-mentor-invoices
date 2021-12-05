@@ -1,0 +1,42 @@
+#invoice-form form {
+  overflow-y: auto;
+}
+#invoice-form form h6 {
+  color: #7c5dfa;
+}
+#invoice-form form .item, #invoice-form form .qty, #invoice-form form .price, #invoice-form form .total {
+  flex-grow: 2;
+}
+#invoice-form .invoice-div {
+  background-color: #f9fafe;
+}
+#invoice-form .invoice-div:hover {
+  background-color: #9277ff;
+}
+#invoice-form .invoice-div-night {
+  background-color: #1e2139;
+  border: none;
+  color: #fff;
+}
+#invoice-form .invoice-div-night::placeholder {
+  color: #fff;
+}
+#invoice-form svg:hover {
+  cursor: pointer;
+}
+#invoice-form svg:hover path {
+  fill: #ec5757;
+}
+#invoice-form .purple-btn {
+  padding: 0.4rem 0.8rem 0.4rem 0.3rem;
+  color: #fff;
+  background-color: #7c5dfa;
+  border-radius: 2rem;
+}
+#invoice-form .purple-btn img {
+  padding: 0.7rem;
+  margin-right: 0.4rem;
+  background-color: #fff;
+}
+
+/*# sourceMappingURL=invoiceform.css.map */

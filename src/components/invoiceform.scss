@@ -1,0 +1,41 @@
+@import 'mixins.scss';
+
+#invoice-form {
+    form {
+        overflow-y: auto;
+
+        h6 {
+            color: rgb(124, 93, 250);
+        }
+
+        .item, .qty, .price, .total {
+            flex-grow: 2;
+        }
+    }
+    
+    .invoice-div {
+        background-color: rgb(249, 250, 254);
+        &:hover {
+            background-color: rgb(146, 119, 255);
+        }
+    }
+    
+    .invoice-div-night {
+        background-color: rgb(30, 33, 57);
+        border: none;
+        color: #fff;
+
+        &::placeholder {
+            color: #fff;
+        }
+    }
+
+    svg:hover {
+        cursor: pointer;
+        path {
+            fill: rgb(236, 87, 87);
+        }
+    }
+
+    @include purple-btn;
+}
