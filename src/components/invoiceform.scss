@@ -1,8 +1,28 @@
 @import 'mixins.scss';
 
 #invoice-form {
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+
+    @media screen and (min-width: 992px){
+        width: 50vw;
+        left: 5rem;
+        border-radius: 1rem;
+    }
+
+    background-color: rgb(20, 22, 37);
+    
     form {
+        height: 60vh;
         overflow-y: auto;
+
+        @media screen and (min-width: 992px){
+            height: 70vh;
+        }
 
         h6 {
             color: rgb(124, 93, 250);

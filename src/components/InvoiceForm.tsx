@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Button, Col, Form, Row, Stack } from "react-bootstrap";
-import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 import { Trash } from "..";
 import { useAppDispatch } from "../store/hooks";
 import { addInvoice, editInvoice, invoiceData } from "../store/invoiceSlice";
+import { motion } from 'framer-motion'
+
 import './invoiceform.css'
 
 export default function InvoiceForm({ type, theme, desktopView, showInvoiceForm, invoice }:
@@ -141,7 +142,11 @@ export default function InvoiceForm({ type, theme, desktopView, showInvoiceForm,
     DOM
     =======*/
     return (
-        <div id="invoice-form">
+        <motion.main key="invoiceForm" id="invoice-form" className="p-4"
+            initial={{ x: -800 }}
+            animate={{ x: 0, transition: { duration: 0.5 } }}
+            exit={{ x: -800, transition: { duration: 0.5 } }}
+        >
             <h2>{type === 'creation' ? "Create Invoice" : (<span>Edit <span className="sec-color">#</span>{invoice!.id}</span>)}</h2>
             <Form onSubmit={e => e.preventDefault()}>
                 <h6>Bill From</h6>
@@ -259,6 +264,6 @@ export default function InvoiceForm({ type, theme, desktopView, showInvoiceForm,
                     onClick={e => copyFormData(e, 'Pending')}>Save & Send</Button>
             </Stack>
 
-        </div>
+        </motion.main>
     )
 }

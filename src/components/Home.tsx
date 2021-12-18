@@ -4,6 +4,7 @@ import { useNavigate } from "react-router"
 import { DropdownArrow, IconArrowRight, IconPlus } from ".."
 import { useAppSelector } from "../store/hooks"
 import { invoiceData } from "../store/invoiceSlice"
+import { AnimatePresence, motion } from "framer-motion"
 import InvoiceForm from "./InvoiceForm"
 import Status from "./Status"
 import "./home.css"
@@ -46,13 +47,29 @@ export default function Home() {
         }
     }, [desktopView])
 
+    const invoicesVariants = {
+        parent: {
+            initial: {},
+            animate: { transition: { staggerChildren: 0.15 } }
+        },
+        child: {
+            initial: { opacity: 0 },
+            animate: { opacity: 1, transition: { duration: 0.5 } }
+        }
+    }
+
 
     /*=============================
     DOM
     ==============================*/
     return (
         <React.Fragment>
-            <div id="home" className="container-fluid">
+            <motion.main id="home" className="container-fluid"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { duration: 0.5 } }}
+                exit={{ opacity: 0, x: -100, transition: { duration: 0.5 } }}
+            >
+
                 {/* The header */}
                 <Stack direction="horizontal" gap={3} className="my-4">
                     <div>
@@ -104,13 +121,20 @@ export default function Home() {
                 </Stack>
 
                 {/* The invoices */}
-                <div id="invoices">
+                <motion.div id="invoices"
+                    variants={invoicesVariants.parent}
+                    initial="initial"
+                    animate="animate"
+                >
                     {invoices.length === 0 ?
                         (<div>No invoices for the selected filter</div>)
                         :
                         invoices.map((invoice, index) => (
-                            <div key={index} className={`${theme === 'night' ? "horizontal-div-night" : ""} horizontal-div align-items-center mb-3`}
-                                onClick={() => navigateTo(`./invoice/${invoice.id}`)}>
+                            <motion.div key={index}
+                                className={`${theme === 'night' ? "horizontal-div-night" : ""} horizontal-div align-items-center mb-3`}
+                                onClick={() => navigateTo(`./invoice/${invoice.id}`)}
+                                variants={invoicesVariants.child}
+                            >
 
                                 <h6 style={{ order: 1 }} className="mb-0"><span className="sec-color">#</span>{invoice.id}</h6>
                                 <div className="sec-color" style={{ order: desktopView ? 2 : 3 }}>
@@ -125,13 +149,15 @@ export default function Home() {
 
                                 {desktopView && <div style={{ order: 6 }}><img src={IconArrowRight} alt="Right Arrow" /></div>}
 
-                            </div>
+                            </motion.div>
                         ))}
-                </div>
+                </motion.div>
 
                 {/* Invoice Form */}
-                {invoiceForm && <InvoiceForm type="creation" theme={theme} desktopView={desktopView} showInvoiceForm={showInvoiceForm} />}
-            </div>
+                <AnimatePresence>
+                    {invoiceForm && <InvoiceForm type="creation" theme={theme} desktopView={desktopView} showInvoiceForm={showInvoiceForm} />}
+                </AnimatePresence>
+            </motion.main>
         </React.Fragment >
     )
 }

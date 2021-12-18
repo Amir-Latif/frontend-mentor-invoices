@@ -1,5 +1,27 @@
+#invoice-form {
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: #141625;
+}
+@media screen and (min-width: 992px) {
+  #invoice-form {
+    width: 50vw;
+    left: 5rem;
+    border-radius: 1rem;
+  }
+}
 #invoice-form form {
+  height: 60vh;
   overflow-y: auto;
+}
+@media screen and (min-width: 992px) {
+  #invoice-form form {
+    height: 70vh;
+  }
 }
 #invoice-form form h6 {
   color: #7c5dfa;

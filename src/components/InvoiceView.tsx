@@ -5,6 +5,7 @@ import { IconArrowLeft } from '..'
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { AppDispatch, RootState } from '../store/store'
 import { deleteInvoice, editInvoice, invoiceData } from '../store/invoiceSlice'
+import { AnimatePresence, motion } from 'framer-motion'
 import InvoiceForm from "./InvoiceForm"
 import Status from './Status'
 import './invoiceview.css'
@@ -54,7 +55,11 @@ export default function InvoiceView() {
 
     return (
         <React.Fragment>
-            <main id="invoice-view" className="container-fluid">
+            <motion.main id="invoice-view" className="container-fluid"
+                initial={{ opacity: 0, x: -100 }}
+                animate={{ opacity: 1, x: 0, transition: { delay: 0.8, duration: 0.5 } }}
+                exit={{ opacity: 0, x: -100, transition: { duration: 0.5 } }}
+            >
                 <Stack direction="horizontal" id="go-back-btn" onClick={() => navigateTo('/')} >
                     <img src={IconArrowLeft} alt="go-back arrow" className="me-4" />
                     Go back
@@ -158,9 +163,11 @@ export default function InvoiceView() {
                 )}
 
                 {/* Invoice Form */}
-                {invoiceForm && <InvoiceForm type="editing" theme={theme} desktopView={desktopView} showInvoiceForm={showInvoiceForm} invoice={invoice} />}
+                <AnimatePresence>
+                    {invoiceForm && <InvoiceForm type="editing" theme={theme} desktopView={desktopView} showInvoiceForm={showInvoiceForm} invoice={invoice} />}
+                </AnimatePresence>
 
-            </main>
+            </motion.main>
         </React.Fragment>
     )
 }
